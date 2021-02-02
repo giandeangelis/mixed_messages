@@ -1,8 +1,17 @@
-//Helper event function, event array
-const randomEventIndex = () => {
+//Helper fact function, fact array
+const randomFactIndex = () => {
     return Math.floor(Math.random() * 10);
 }
-const events = [''];
+const factArray = ['You will win the lottery',
+                'You will suffer a serious accident',
+                'You will find the love of your life',
+                'You will suffer a terrible loss',
+                'You will realise what your purpose is',
+                'You will get a promotion',
+                'Your car will stop working',
+                'You will get an important enlightenment',
+                'You will buy a new house',
+                'You will receive an unexpected inheritance'];
 
 //Calculate current date, months array
 const currentDate = new Date (Date.now());
@@ -10,7 +19,7 @@ const currentDay = currentDate.getDate();
 const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 //Generate random date
 const generateRandomYear = () => {
@@ -46,3 +55,21 @@ const generateRandomDay = (month, year) => {
     return day;
 }
 
+//Generate likelihood between 50% and 100%
+const generateLikelihood = () => Math.floor(Math.random() * 51 + 50);
+
+//Generate message
+const generateMessage = () => {
+    const fact = factArray[randomFactIndex()];
+    const year = generateRandomYear();
+    const month = monthArray[generateRandomMonth(year)];
+    const day = generateRandomDay(month, year);
+    const date = `${day} of ${month} ${year}`;
+    const likelihood = generateLikelihood();
+    const message = `${fact} on the ${date} and I am ${likelihood}% sure...`;
+    return message;
+}
+
+for (let i = 0; i < 1; i++) {
+    console.log(generateMessage());
+}
